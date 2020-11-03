@@ -14,7 +14,7 @@ export default class App extends Component {
     this.setState({
       loading: true
     })
-    const data = await fetch.get('https://safe-hollows-96416.herokuapp.com/ships')
+    const data = await fetch.get('https://radiant-ridge-10683.herokuapp.com/ships')
 
 
     this.setState({
