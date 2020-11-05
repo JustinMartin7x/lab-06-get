@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import fetch from 'superagent'
+import { Link } from 'react-router-dom'
 
 export default class App extends Component {
     state = {
@@ -24,10 +25,14 @@ export default class App extends Component {
     render() {
         return (
             <div >
+                <div>
+                    <Link to="./AddPage">To Add Page </Link>
+                </div>
                 {
                     !this.state.loading ?
 
                         this.state.objects.map((data, i) =>
+
                             <div>
                                 <img src={data.image} alt="ship" />
                                 <h1>{data.name}</h1>

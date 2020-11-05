@@ -30,6 +30,8 @@ export default class AddPage extends Component {
         await fetch
             .post('https://radiant-ridge-10683.herokuapp.com/ships')
             .send(newShip)
+
+        this.props.history.push('/');
     }
     handleName = (e) => {
         this.setState({
