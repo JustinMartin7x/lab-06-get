@@ -21,7 +21,7 @@ export default class AddPage extends Component {
         const newShip = {
             name: this.state.name,
             weapons: this.state.weapons,
-            docked: this.state.weapons,
+            docked: this.state.docked,
             size: this.state.size,
             class_id: this.state.class_id,
             image: this.state.image,
@@ -94,9 +94,6 @@ export default class AddPage extends Component {
                 Image <input onChange={this.handleImage}></input>
                     <button>submit</button>
                 </form>
-
-
-
             </div>
         )
     }
