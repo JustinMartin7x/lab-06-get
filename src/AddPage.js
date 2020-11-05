@@ -74,7 +74,7 @@ export default class AddPage extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     Name<input onChange={this.handleName}></input>
-                weapons Number<input onChange={this.handleWeapons}></input>
+                weapons Number<input type="number" onChange={this.handleWeapons}></input>
                 Docked <select onChange={this.handleDocked}>
                         <option value="true">yes</option>
                         <option value="false">no</option>

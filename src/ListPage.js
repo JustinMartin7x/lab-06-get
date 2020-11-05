@@ -33,15 +33,13 @@ export default class App extends Component {
 
                         this.state.objects.map((data, i) =>
 
-                            <div>
+                            <section className="shipCard">
                                 <img src={data.image} alt="ship" />
-                                <h1>{data.name}</h1>
-                                <h3>{data.size}</h3>
-                                <h3>{data.class}</h3>
-                                <h3>{data.weapons}</h3>
-
-
-                            </div>
+                                <h1>Ship Name: {data.name}</h1>
+                                <h3>Ship Size: {data.size}</h3>
+                                <h3>Ship Class: {data.class_id}</h3>
+                                <h3>Weapons On-Board: {data.weapons} </h3>
+                            </section>
                         ) :
                         "Loading"
 
