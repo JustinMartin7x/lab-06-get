@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import fetch from 'superagent'
 import { Link } from 'react-router-dom'
+import { fetchShips } from './fetch.js'
 
 export default class App extends Component {
     state = {
@@ -14,7 +15,7 @@ export default class App extends Component {
         this.setState({
             loading: true
         })
-        const data = await fetch.get('https://radiant-ridge-10683.herokuapp.com/ships')
+        const data = fetchShips()
         this.setState({
             objects: data.body,
             loading: false
