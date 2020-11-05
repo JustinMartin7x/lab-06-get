@@ -1,56 +1,35 @@
 import React, { Component } from 'react'
 import './App.css';
-import fetch from 'superagent'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import ListPage from './ListPage.js'
+import AddPage from './AddPage';
+
+
 
 export default class App extends Component {
-  state = {
-    objects: [],
-    loading: true
-  }
-
-
-
-  componentDidMount = async () => {
-    this.setState({
-      loading: true
-    })
-    const data = await fetch.get('https://radiant-ridge-10683.herokuapp.com/ships')
-
-
-    this.setState({
-      objects: data.body,
-      loading: false
-    })
-    console.log(this.state.objects)
-
-  }
-
   render() {
     return (
-      <div >
-        {
-          !this.state.loading ?
-
-            this.state.objects.map((data, i) =>
-              <div>
-                <img src={data.image} alt="ship" />
-                <h1>{data.name}</h1>
-                <h3>{data.size}</h3>
-                <h3>{data.class}</h3>
-                <h3>{data.weapons}</h3>
-
-
-              </div>
-            ) :
-            "Loading"
-
-        }
-
-
-
+      <div className="main">
+        <Router>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={(routerProps) => <ListPage {...routerProps} />}
+            />
+            <Route
+              path="/AddPage"
+              exact
+              render={(routerProps) =>
+                <AddPage {...routerProps} />}
+            />
+          </Switch>
+        </Router>
       </div>
-    );
+    )
   }
 }
-
-
