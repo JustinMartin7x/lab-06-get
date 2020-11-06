@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchShips } from './fetch.js'
+import Header from './Header.js'
 
 export default class App extends Component {
 
@@ -26,40 +27,42 @@ export default class App extends Component {
     }
 
     render() {
-        console.log(this.state.shipData)
         return (
-            <div >
-                <div>
-                    <Link to="./AddPage">To Add Page </Link>
-                </div>
-                {
-                    !this.state.loading ?
+            <>
+                <Header />
+                <div >
+                    <div>
+                        <Link to="./AddPage">To Add Page </Link>
+                    </div>
+                    {
+                        !this.state.loading ?
 
-                        this.state.shipData.map((data, i) =>
-                            <div>
+                            this.state.shipData.map((data, i) =>
+                                <div>
 
-                                <Link to={`/Details/${data.id}`} >
+                                    <Link to={`/Details/${data.id}`} >
 
-                                    <section className="shipCard">
-                                        <img src={data.image} alt="ship" />
-                                        <h1>Ship Name: {data.name}</h1>
-                                        <h3>Ship Size: {data.size}</h3>
-                                        <h3>Ship Class: {data.class_id}</h3>
-                                        <h3>Weapons On-Board: {data.weapons} </h3>
-                                    </section>
+                                        <section className="shipCard">
+                                            <img src={data.image} alt="ship" />
+                                            <h1>Ship Name: {data.name}</h1>
+                                            <h3>Ship Size: {data.size}</h3>
+                                            <h3>Ship Class: {data.class_id}</h3>
+                                            <h3>Weapons On-Board: {data.weapons} </h3>
+                                        </section>
 
-                                </Link>
-                            </div>
+                                    </Link>
+                                </div>
 
-                        ) :
-                        "Loading"
-
-
-                }
-
+                            ) :
+                            "Loading"
 
 
-            </div >
+                    }
+
+
+
+                </div >
+            </>
         );
     }
 }
