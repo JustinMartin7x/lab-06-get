@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import fetch from 'superagent'
 import { Link } from 'react-router-dom'
+import { fetchShips } from './fetch.js'
 
 export default class App extends Component {
+
     state = {
-        objects: [],
+
+        shipData: [],
         loading: true
+
     }
 
 
@@ -14,15 +17,16 @@ export default class App extends Component {
         this.setState({
             loading: true
         })
-        const data = await fetch.get('https://radiant-ridge-10683.herokuapp.com/ships')
+        const data = await fetchShips()
         this.setState({
-            objects: data.body,
+            shipData: data,
             loading: false
         })
         console.log(this.state.objects)
     }
 
     render() {
+        console.log(this.state.shipData)
         return (
             <div >
                 <div>
@@ -31,25 +35,31 @@ export default class App extends Component {
                 {
                     !this.state.loading ?
 
-                        this.state.objects.map((data, i) =>
-
+                        this.state.shipData.map((data, i) =>
                             <div>
-                                <img src={data.image} alt="ship" />
-                                <h1>{data.name}</h1>
-                                <h3>{data.size}</h3>
-                                <h3>{data.class}</h3>
-                                <h3>{data.weapons}</h3>
 
+                                <Link to={`/Details/${data.id}`} >
 
+                                    <section className="shipCard">
+                                        <img src={data.image} alt="ship" />
+                                        <h1>Ship Name: {data.name}</h1>
+                                        <h3>Ship Size: {data.size}</h3>
+                                        <h3>Ship Class: {data.class_id}</h3>
+                                        <h3>Weapons On-Board: {data.weapons} </h3>
+                                    </section>
+
+                                </Link>
                             </div>
+
                         ) :
                         "Loading"
+
 
                 }
 
 
 
-            </div>
+            </div >
         );
     }
 }

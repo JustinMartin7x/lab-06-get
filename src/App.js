@@ -6,7 +6,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import ListPage from './ListPage.js'
-import AddPage from './AddPage';
+import AddPage from './AddPage.js';
+import Details from './Details.js'
 
 
 
@@ -26,6 +27,12 @@ export default class App extends Component {
               exact
               render={(routerProps) =>
                 <AddPage {...routerProps} />}
+            />
+            <Route
+              path="/Details/:id"
+              exact
+              render={(routerProps) =>
+                <Details {...routerProps} />}
             />
           </Switch>
         </Router>
