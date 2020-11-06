@@ -11,10 +11,12 @@ export default class AddPage extends Component {
         classes: []
     }
     componentDidMount = async () => {
+        this.state.loading = true
         const data = fetchShip();
         this.setState({
             classes: data.body
         })
+        this.state.loading = false;
     }
     handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,30 +75,38 @@ export default class AddPage extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    Name<input onChange={this.handleName}></input>
+                {
+                    !this.state.loading ?
+
+                        <div>
+                            <form onSubmit={this.handleSubmit}>
+                                Name<input onChange={this.handleName}></input>
                 weapons Number<input type="number" onChange={this.handleWeapons}></input>
                 Docked <select onChange={this.handleDocked}>
-                        <option value="true">yes</option>
-                        <option value="false">no</option>
-                    </select>
+                                    <option value="true">yes</option>
+                                    <option value="false">no</option>
+                                </select>
                 size <select onChange={this.handleSize}>
-                        <option value="small">small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="very large">Very Large</option>
-                        <option value="massive">Massive</option>
-                    </select>
+                                    <option value="small">small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                    <option value="very large">Very Large</option>
+                                    <option value="massive">Massive</option>
+                                </select>
                 Ship Class <select onChange={this.handleClass}>
-                        {
-                            this.state.classes.map((item, key) =>
-                                <option value={item.id}>{item.name}</option>
-                            )
-                        }
-                    </select>
+                                    {
+                                        this.state.classes.map((item, key) =>
+                                            <option value={item.id}>{item.name}</option>
+                                        )
+                                    }
+                                </select>
                 Image <input onChange={this.handleImage}></input>
-                    <button>submit</button>
-                </form>
+                                <button>submit</button>
+                            </form>
+                        </div>
+                        :
+                        "Loading"
+                }
             </div>
         )
     }

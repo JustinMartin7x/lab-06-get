@@ -5,6 +5,7 @@ const URL = 'https://radiant-ridge-10683.herokuapp.com/'
 export async function fetchShips() {
     try {
         const response = await fetch.get(`${URL}ships`);
+        console.log(response.body)
         return response.body;
     } catch (err) { throw err; }
 }

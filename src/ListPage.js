@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import fetch from 'superagent'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { fetchShips } from './fetch.js'
 
 export default class App extends Component {
 
     state = {
 
-        ShipData: [],
-
+        shipData: [],
         loading: true
 
     }
@@ -19,15 +17,16 @@ export default class App extends Component {
         this.setState({
             loading: true
         })
-        const data = fetchShips()
+        const data = await fetchShips()
         this.setState({
-            objects: data.body,
+            shipData: data,
             loading: false
         })
         console.log(this.state.objects)
     }
 
     render() {
+        console.log(this.state.shipData)
         return (
             <div >
                 <div>
@@ -36,19 +35,21 @@ export default class App extends Component {
                 {
                     !this.state.loading ?
 
-                        this.state.objects.map((data, i) =>
+                        this.state.shipData.map((data, i) =>
+                            <div>
 
-                            <Link to={`/Details/${data.id}`} >
+                                <Link to={`/Details/${data.id}`} >
 
-                                <section className="shipCard">
-                                    <img src={data.image} alt="ship" />
-                                    <h1>Ship Name: {data.name}</h1>
-                                    <h3>Ship Size: {data.size}</h3>
-                                    <h3>Ship Class: {data.class_id}</h3>
-                                    <h3>Weapons On-Board: {data.weapons} </h3>
-                                </section>
+                                    <section className="shipCard">
+                                        <img src={data.image} alt="ship" />
+                                        <h1>Ship Name: {data.name}</h1>
+                                        <h3>Ship Size: {data.size}</h3>
+                                        <h3>Ship Class: {data.class_id}</h3>
+                                        <h3>Weapons On-Board: {data.weapons} </h3>
+                                    </section>
 
-                            </Link>
+                                </Link>
+                            </div>
 
                         ) :
                         "Loading"
