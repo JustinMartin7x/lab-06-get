@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import fetch from 'superagent'
+import { fetchShip } from './fetch.js'
 
 const localStorageUser = {
     userId: 1
@@ -10,7 +11,7 @@ export default class AddPage extends Component {
         classes: []
     }
     componentDidMount = async () => {
-        const data = await fetch.get('https://radiant-ridge-10683.herokuapp.com/classes');
+        const data = fetchShip();
         this.setState({
             classes: data.body
         })
