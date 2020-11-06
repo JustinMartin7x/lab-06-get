@@ -24,7 +24,7 @@ export default class Details extends Component {
         })
         const ship = await fetchShip(`${this.props.match.params.id}`)
         const shipClasses = await fetchClasses()
-        console.log(this.props.match.params.id)
+        console.log(this.props.match.params.id, ship)
         this.setState({
             classes: shipClasses,
             shipData: ship,
@@ -45,8 +45,8 @@ export default class Details extends Component {
             size: this.state.shipData.size,
             class_id: this.state.shipData.class,
             image: this.state.shipData.image,
-
         })
+        this.props.history.push('/');
     }
     handleSubmit = () => {
         const newShip = {
@@ -67,7 +67,7 @@ export default class Details extends Component {
                     !this.state.loading ?
                         <>
                             <section className="shipCard">
-                                <img src={this.state.shipData.image} alt="ship" />
+
                                 <h1>Ship Name: {this.state.shipData.name}</h1>
                                 <h3>Ship Size: {this.state.shipData.size}</h3>
                                 <h3>Ship Class: {this.state.shipData.class_id}</h3>
